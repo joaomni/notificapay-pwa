@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA com Notificações</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icons/icon-192x192.png">
+  <script defer src="/app.js"></script>
+</head>
+
+<body>
+  <h1>Notificações no PWA</h1>
+  <button id="button1">Notificação 1</button>
+  <button id="button2">Notificação 2</button>
+
+  <script>
+    document.getElementById('button1').addEventListener('click', () => {
+      if (Notification.permission === 'granted') {
+        navigator.serviceWorker.ready.then((registration) => {
+          registration.showNotification('Venda aprovada!', {
+            body: 'Sua comissão: R$ 147,00',
+            icon: '/icons/ic_kirvano.webp'
+          });
+        });
+      } else {
+        alert('Por favor, permita notificações.');
+      }
+    });
+
+    document.getElementById('button2').addEventListener('click', () => {
+      if (Notification.permission === 'granted') {
+        navigator.serviceWorker.ready.then((registration) => {
+          registration.showNotification('Venda aprovada!', {
+            body: 'Sua comissão: R$ 147,00',
+            icon: '/icons/ic_kiwify.jpg'
+          });
+        });
+      } else {
+        alert('Por favor, permita notificações.');
+      }
+    });
+  </script>
+</body>
+
+</html>
